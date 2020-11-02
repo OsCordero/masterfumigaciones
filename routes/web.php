@@ -26,7 +26,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware(['auth'])->group(function(){
 
-    Route::get('/users', 'HomeController@index')->name('users.index')->middleware('has.permission:user.show');
+    Route::get('/users', 'UserController@index')->name('users.index')->middleware('has.permission:user.show');
+    Route::resource('users', 'UserController')->middleware('has.permission:user.show');
 
 });
 
