@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('content')
 
+<br>
+<br>
     <div class="container">
         <h2>Lista de usuarios <a href="users/create"><button type="button" class="btn btn-success float-right">Agregar
                     un nuevo usuario</button></a></h2>
@@ -11,7 +13,7 @@
                 <thead class="thead-light">
                     <tr>
 
-                        <th scope="col">ID</th>
+                        <th scope="col">N°</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Correo electrónico</th>
                         <th scope="col"><center>Acciones</center></th>

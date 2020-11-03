@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header">Bienvenido/a</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -13,8 +13,11 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    You are logged in!
+                    <center> SISTEMA INFORMÁTICO PARA APOYAR LA GESTIÓN DE LAS FUMIGACIONES EN LA EMPRESA MASTERFUMIGACIONES. </center>
+                    <br>
+                    <center>
+                     <img src="img/logo.jpg" class="img-thumbnail" alt="Responsive image">
+                    </center>
                 </div>
             </div>
         </div>
