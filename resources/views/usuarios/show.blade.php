@@ -13,7 +13,7 @@
                    <p><strong>Correo electrónico:: </strong> {{$user->email}}</p>
                    <p><strong>Rol: </strong> {{$rol}}</p>
 
-                   <a href="{{route('users.index')}}"><button type="button" class="btn btn-primary">regresar</button></a>
+                   <a href="{{route('users.index')}}"><button type="button" class="btn btn-primary">Regresar</button></a>
                 </div>
             </div>
         </div>
