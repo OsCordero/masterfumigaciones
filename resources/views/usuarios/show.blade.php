@@ -10,10 +10,10 @@
 
                 <div class="card-body">
                     <p><strong>Nombre: </strong> {{$user->name}}</p>
-                   <p><strong>Correo: </strong> {{$user->email}}</p>
+                   <p><strong>Correo electrónico:: </strong> {{$user->email}}</p>
                    <p><strong>Rol: </strong> {{$rol}}</p>
 
-                   <a href="{{route('users.index')}}"><button type="button" class="btn btn-danger">regresar</button></a>
+                   <a href="{{route('users.index')}}"><button type="button" class="btn btn-primary">regresar</button></a>
                 </div>
             </div>
         </div>

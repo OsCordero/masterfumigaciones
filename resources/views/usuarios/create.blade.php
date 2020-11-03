@@ -15,8 +15,8 @@
                                 <input type="text" class="form-control" name="name" placeholder="Escriba el nombre del usuario">       
                               </div>
                             <div class="form-group">
-                              <label for="email">Email</label>
-                              <input type="email" class="form-control" name="email" aria-describedby="emailHelp">    </div>
+                              <label for="email">Correo electrónico</label>
+                              <input type="email" class="form-control" name="email" placeholder="Escriba su correo electrónico"  aria-describedby="emailHelp">    </div>
                             <div class="form-group">
                               <label for="password">Password</label>
                               <input type="password" class="form-control" name="password">
@@ -30,9 +30,14 @@
                                     @endforeach
                                   </select>
                                   <div class="card-body">
-                                    <button type="submit" class="btn btn-primary">registrar</button>
+                                  <div class="guardar-boton">
+                                    <button type="submit" class="btn btn-success">Registrar</button>
+                                    </div>
+                                    <div class="limpiarCancelar-boton">
                                     <button type="reset" class="btn btn-secondary">Limpiar</button>
                                     <a href="{{route('users.index')}}"><button type="button" class="btn btn-danger">Cancelar</button></a>
+                                    <div/>
+
                                 </div>
                             
                           </form>   

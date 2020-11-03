@@ -16,7 +16,7 @@
                                 <input type="text" class="form-control" name="name" value="{{$user->name}}" placeholder="Escriba el nombre del usuario">
                             </div>
                             <div class="form-group">
-                                <label for="email">Email</label>
+                                <label for="email">Correo electrónico</label>
                                 <input type="email" class="form-control" name="email" value="{{$user->email}}" aria-describedby="emailHelp"> </div>
                             <h6>Lista de roles</h6>
                         
@@ -27,8 +27,13 @@
                                 @endforeach
                             </select>
                             <div class="card-body">
-                                <button type="submit" class="btn btn-primary">Actualizar</button>
+                            <div class="guardar-boton">
+                                <button type="submit" class="btn btn-success">Actualizar</button>
+                                </div>
+                                <div class="limpiarCancelar-boton">
+                                
                                 <a href="{{route('users.index')}}"><button type="button" class="btn btn-danger">Cancelar</button></a>
+                                </div>
                             </div>
                         </form>
                 </div>
