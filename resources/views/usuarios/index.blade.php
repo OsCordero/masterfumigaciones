@@ -27,11 +27,11 @@
                             <td width="40%">{{ $user->email }}</td>                            
                             <td width="20%">
                                  <form action="{{ route('users.destroy', $user->id) }}" method="post">
-                                    <a href="{{ route('users.show', $user->id) }}"><button type="button" class="btn btn-info">Ver</button></a>
-                                    <a href="{{ route('users.edit', $user->id) }}"><button type="button" class="btn btn-warning">Editar</button></a>
+                                    <a href="{{ route('users.show', $user->id) }}"><button type="button" class="btn btn-info"><i class="fas fa-eye"></i></button></a>
+                                    <a href="{{ route('users.edit', $user->id) }}"><button type="button" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button></a>
                                     @csrf
                                      @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Eliminar</button> 
+                                    <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt" style="color:black"></i></button> 
                                 </form>
                             </td>
                         </tr>
