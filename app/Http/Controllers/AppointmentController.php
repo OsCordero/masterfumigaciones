@@ -82,4 +82,14 @@ class AppointmentController extends Controller
     {
         //
     }
+
+    public function reporte1_captura()
+    {
+        return view('reportes/reporte1_captura');
+    }
+
+    public function reporte2_captura()
+    {
+        return view('reportes/reporte2_captura');
+    }
 }
