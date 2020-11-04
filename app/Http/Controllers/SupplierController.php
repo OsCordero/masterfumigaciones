@@ -14,7 +14,9 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        //
+        $suppliers =
+            Supplier::all(['id','nombre_proveedor','telefono_proveedor','celular_proveedor','correo_proveedor']);
+        return view('proveedores.index', compact("suppliers"));
     }
 
     /**

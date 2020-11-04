@@ -41,7 +41,9 @@
                         <a class="nav-link negrita" href="{{ route('users.index') }}">Usuarios</a>
                     </li>
                       @endcan
-                      
+                        <li class="nav-item">
+                            <a class="nav-link negrita" href="{{ route('suppliers.index') }}">Proveedores</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
