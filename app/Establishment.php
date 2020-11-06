@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Establishment extends Model
 {
     //
+    protected $fillable = [
+        'nombre_establecimiento', 
+        'direccion_establecimiento',
+        'telefono_establecimiento',   
+    ];
     public function establishment_type()
     {
         return $this->belongsTo('App\Establishment_Type');

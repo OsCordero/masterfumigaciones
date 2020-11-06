@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Appointment extends Model
 {
     //
+
+    protected $fillable = [
+        'codigo_fumigacion', 'fecha', 'hora','cancelado',
+    ];
+
     public function establishment()
     {
         return $this->belongsTo('App\Establishment');

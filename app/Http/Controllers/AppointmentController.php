@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Appointment;
+use App\Client;
 use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
@@ -15,6 +16,9 @@ class AppointmentController extends Controller
     public function index()
     {
         //
+        $clients=Client::all();
+        
+        return view('citas.index', compact('clients'));
     }
 
     /**

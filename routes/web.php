@@ -32,6 +32,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/users', 'UserController@index')->name('users.index')->middleware('can:user.show');
     Route::resource('users', 'UserController')->middleware('can:user.show');
 
+    Route::get('/appoinments', 'AppointmentController@index')->name('appoimenents.index');
     Route::get('/reportes1', 'AppointmentController@reporte1_captura')->name('reporte1.captura');
 
     Route::get('/reportes2', 'AppointmentController@reporte2_captura')->name('reporte2.captura');
