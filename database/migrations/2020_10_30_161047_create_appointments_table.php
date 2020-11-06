@@ -19,6 +19,7 @@ class CreateAppointmentsTable extends Migration
             $table->date('fecha');
             $table->string('hora', 11);
             $table->boolean('cancelado')->dafult(0);
+            $table->decimal('monto', 8, 2)->nullable();
             $table->unsignedBigInteger('fumigation_type_id');
             $table->foreign('fumigation_type_id')->references('id')->on('fumigation__types');
             $table->unsignedBigInteger('establishment_id');

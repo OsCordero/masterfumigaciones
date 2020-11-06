@@ -14,11 +14,11 @@ class Establishment extends Model
     ];
     public function establishment_type()
     {
-        return $this->belongsToMany('App\Establishment_Type');
+        return $this->belongsTo('App\Establishment_Type');
     }
     public function client()
     {
-        return $this->belongsToMany('App\Client');
+        return $this->belongsTo('App\Client');
     }
     public function appointments()
     {

@@ -15,4 +15,8 @@ class Supplier extends Model
         'correo_proveedor',
         'comentarios',
     ];
+    public function producttypes()
+    {
+        return $this->hasMany('App\ProductType');
+    }
 }
