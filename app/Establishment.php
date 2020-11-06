@@ -7,13 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 class Establishment extends Model
 {
     //
+    protected $fillable = [
+        'nombre_establecimiento', 
+        'direccion_establecimiento',
+        'telefono_establecimiento',   
+    ];
     public function establishment_type()
     {
-        return $this->belongsTo('App\Establishment_Type');
+        return $this->belongsToMany('App\Establishment_Type');
     }
     public function client()
     {
-        return $this->belongsTo('App\Client');
+        return $this->belongsToMany('App\Client');
     }
     public function appointments()
     {
