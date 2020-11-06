@@ -23,7 +23,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/suppliers', 'SupplierController@index')->name('suppliers.index');
-
+Route::get('/suppliers/create','SupplierController@create')->name('suppliers.create');
+Route::post('/suppliers/create', 'SupplierController@store')->name('suppliers.store');
 //Routes
 
 Route::middleware(['auth'])->group(function(){

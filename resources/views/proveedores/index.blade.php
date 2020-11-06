@@ -4,7 +4,7 @@
     <br>
     <br>
     <div class="container">
-        <h2>Lista de proveedores <a href="#"><button type="button" class="btn btn-success float-right">Agregar
+        <h2>Lista de proveedores <a href="{{ route('suppliers.create')}}"><button type="button" class="btn btn-success float-right">Agregar
                     un nuevo proveedor</button></a></h2>
         <br>
         <div class="row justify-content-center">
