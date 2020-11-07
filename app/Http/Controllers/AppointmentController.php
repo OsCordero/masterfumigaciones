@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Appointment;
 use App\Client;
 use App\Establishment;
+use App\Fumigation_Type;
+use App\Establishment_Type;
 use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
@@ -31,8 +33,9 @@ class AppointmentController extends Controller
     {
         //
         $clients=Client::all();
-        
-        return view('citas.create', compact('clients'));
+        $tipoFumigaciones = Fumigation_Type::all();
+        $tipoEstablecimientos = Establishment_Type::all();
+        return view('citas.create', compact('clients','tipoFumigaciones', 'tipoEstablecimientos'));
 
     }
 
@@ -45,6 +48,18 @@ class AppointmentController extends Controller
     public function store(Request $request)
     {
         //
+        
+        $user = Appointment::create([
+            'codigo_fumigacion' => 123456789,
+            'fecha' => $request['fecha'],
+            'hora' => $request['hora'],
+            'cancelado' =>0,
+            'fumigation_type_id' => (int) $request['tipo_fumigacion'],
+            'establishment_id' => (int) $request['lugar'],
+            
+        ]);
+
+        return redirect('appoinments');
     }
 
     /**
@@ -53,9 +68,15 @@ class AppointmentController extends Controller
      * @param  \App\Appointment  $appointment
      * @return \Illuminate\Http\Response
      */
-    public function show(Appointment $appointment)
+    public function show($id)
     {
         //
+        $appointment = Appointment::find($id);
+    
+        $tipo_fumigacion = Fumigation_Type::find($appointment->fumigation_type_id);
+        $establecimiento = Establishment::find($appointment->establishment_id);
+      
+        return view('citas.show',compact('appointment', 'tipo_fumigacion', 'establecimiento'));
     }
 
     /**
@@ -87,9 +108,15 @@ class AppointmentController extends Controller
      * @param  \App\Appointment  $appointment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Appointment $appointment)
+    public function destroy($id)
     {
         //
+        
+
+        $appointment = Appointment::find($id);
+
+        $appointment->delete();
+        return redirect('appoinments');
     }
 
     public function reporte1_captura()
@@ -106,9 +133,20 @@ class AppointmentController extends Controller
     {
         $filtro = $request['id'];
         $data = Establishment::select("id", "nombre_establecimiento")
-        ->where('client_id', '=', '$filtro')
+        ->where('client_id',$filtro)
         ->get();
 
         return response()->json($data);
     }
+
+    public function fetchEstablecimientos_precio(Request $request)
+    {
+        $filtro = $request['id'];
+        $data = Establishment_Type::select("costo_aproximado")
+        ->where('id',$filtro)
+        ->get();
+
+        return response()->json($data);
+    }
+
 }

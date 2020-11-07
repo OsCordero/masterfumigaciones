@@ -55,8 +55,8 @@
                             <td width="10%">{{ $appointment->hora}}</td>           
                                                
                             <td width="20%">
-                                 <form action="" method="post">
-                                    <a href=""><button type="button" class="btn btn-info"><i class="fas fa-eye"></i></button></a>
+                                 <form action="{{ route('appoinments.destroy', $appointment->id) }}" method="post">
+                                    <a href="{{ route('appoinments.show', $appointment->id) }}"><button type="button" class="btn btn-info"><i class="fas fa-eye"></i></button></a>
                                     <a href=""><button type="button" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button></a>
                                     @csrf
                                      @method('DELETE')

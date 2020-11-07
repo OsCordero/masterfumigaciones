@@ -12,7 +12,7 @@
                   
 
                     <div class="card-body">
-                        <form action="/users" method="POST">
+                        <form action="/appoinments" method="POST">
                             @csrf
                             <div class="form-group row">
                             <label for="cliente" class="col-md-4 col-form-label text-md-right">Cliente:</label>
@@ -36,7 +36,7 @@
 
                             <div class="col-md-6">
                                 <select id="lugar"  class="form-control @error('lugar') is-invalid @enderror select2-lugar" name="lugar" required autocomplete="lugar" autofocus>
-                                
+                                <option value="0">Seleccione el establecimiento</option>
                                 </select>
                                 @error('lugar')
                                     <span class="invalid-feedback" role="alert">
@@ -50,9 +50,29 @@
 
                             <div class="col-md-6">
                                 <select id="tipo_fumigacion"  class="form-control @error('tipo_fumigacion') is-invalid @enderror select2-tipo-fumigacion" name="tipo_fumigacion" required autocomplete="tipo_fumigacion" autofocus>
-          
+                                <option value="0">Seleccione el tipo de fumigación</option>
+                                @foreach ($tipoFumigaciones as $tipo)
+                                <option value="{{$tipo->id}}">{{$tipo->nombre_tipo_fumigacion}}</option>
+                                @endforeach
                                 </select>
                                 @error('tipo_fumigacion')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="tipo_establecimiento" class="col-md-4 col-form-label text-md-right">Tipo de establecimiento:</label>
+
+                            <div class="col-md-6">
+                                <select id="tipo_establecimiento"  class="form-control @error('tipo_establecimiento') is-invalid @enderror select2-tipo-establecimiento" name="tipo_establecimiento" required autocomplete="tipo_establecimiento" autofocus>
+                                <option value="0">Seleccione el tipo de establecimiento</option>
+                                @foreach ($tipoEstablecimientos as $tipoEstablecimiento)
+                                <option value="{{$tipoEstablecimiento->id}}">{{$tipoEstablecimiento->nombre_tipo_establecimiento}}</option>
+                                @endforeach
+                                </select>
+                                @error('tipo_establecimiento')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -106,7 +126,7 @@
                             <label for="hora" class="col-md-4 col-form-label text-md-right">Precio estandar:</label>
 
                             <div class="col-md-6">
-                            <input type="text" class="form-control" name="precio" value="Precio" disabled aria-describedby="precioHelp">
+                            <input type="text" id="precio" class="form-control" name="precio"  disabled aria-describedby="precioHelp">
                             </div>
                         </div>
                                   <div class="card-body">
@@ -127,7 +147,7 @@
     </div>
     <script type="text/javascript">
        $( document ).ready(function() {
-        alert("GHOAL");
+    
         
 
         $("#input-cliente").change(function(){
@@ -138,15 +158,34 @@
             url:URL,
             data: {id: identificador},
             success: function(resp){
-                let contenido= "   <option value=\"\" selected disabled hidden>Busqueda de la sucursal</option>"
+                let contenido= "   <option value=\"\" selected disabled hidden>Seleccione establecimiento</option>"
                 $.each(resp, function(index, value){
-                    contenido+= '<option value="'+value.id+'">'+value.nombre+'</option>';
+                    contenido+= '<option value="'+value.id+'">'+value.nombre_establecimiento+'</option>';
                 });
                 console.log('2')
                 $("#lugar").html(contenido);
             }
         });
     });
+
+    $("#tipo_establecimiento").change(function(){
+        URL= "/citas/fetch_establecimientos_precio"
+        const identificador = $(this).val();
+        console.log('1')
+        $.ajax({
+            url:URL,
+            data: {id: identificador},
+            success: function(resp){
+                let contenido= ""
+                $.each(resp, function(index, value){
+                    document.getElementById("precio").value = value.costo_aproximado;
+                    console.log(value.costo_aproximado)
+                });
+              
+            }
+        });
+    });
+   
  
     
       });
