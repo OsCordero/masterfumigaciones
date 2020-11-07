@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Appointment;
 use App\Client;
+use App\Establishment;
 use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
@@ -29,6 +30,10 @@ class AppointmentController extends Controller
     public function create()
     {
         //
+        $clients=Client::all();
+        
+        return view('citas.create', compact('clients'));
+
     }
 
     /**
@@ -95,5 +100,15 @@ class AppointmentController extends Controller
     public function reporte2_captura()
     {
         return view('reportes/reporte2_captura');
+    }
+
+    public function fetchEstablecimientos(Request $request)
+    {
+        $filtro = $request['id'];
+        $data = Establishment::select("id", "nombre_establecimiento")
+        ->where('client_id', '=', '$filtro')
+        ->get();
+
+        return response()->json($data);
     }
 }

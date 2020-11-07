@@ -4,7 +4,7 @@
 <br>
 <br>
     <div class="container">
-        <h2>Listado de citas<a href="users/create"><button type="button" class="btn btn-success float-right">Crear una cita</button></a></h2>
+        <h2>Listado de citas<a href="appoinments/create"><button type="button" class="btn btn-success float-right">Crear una cita</button></a></h2>
                     <br>
 <form>
   <div class="form-row align-items-center">
