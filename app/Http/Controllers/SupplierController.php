@@ -14,7 +14,9 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        //
+        $suppliers =
+            Supplier::all(['id','nombre_proveedor','telefono_proveedor','celular_proveedor','correo_proveedor']);
+        return view('proveedores.index', compact("suppliers"));
     }
 
     /**
@@ -24,7 +26,7 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        //
+        return view('proveedores.create');
     }
 
     /**
@@ -35,7 +37,17 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Validando valores del request
+        $data = $request->validate([
+            'nombre_proveedor' => 'required|min:3|max:50',
+            'telefono_proveedor' => 'required',
+            'celular_proveedor' => 'required',
+            'correo_proveedor' => 'required',
+            'direccion_proveedor' => 'required|min:3|max:100',
+            'comentarios' => 'required|min:3|max:100'
+        ]);
+
+
     }
 
     /**

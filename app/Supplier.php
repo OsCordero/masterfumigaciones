@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Supplier extends Model
 {
-    //
+
+    //Campos
     protected $fillable = [
-        'nombre_proveedor', 
-        'direccion_proveedor', 
+        'nombre_proveedor',
+        'direccion_proveedor',
         'telefono_proveedor',
         'celular_proveedor',
         'correo_proveedor',
@@ -19,4 +20,5 @@ class Supplier extends Model
     {
         return $this->hasMany('App\ProductType');
     }
+
 }
