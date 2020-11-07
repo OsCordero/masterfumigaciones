@@ -46,7 +46,7 @@
                     @foreach ($client->establishments as $establishment)
                    @if($establishment->appointments)
                    @foreach($establishment->appointments as $appointment)
-                   
+                   @if($appointment->cancelado==false)
                         <tr>
                             <th scope="row" width="20%" >{{ $client->nombre_cliente }}</th>
                             <td width="25%">{{ $establishment->nombre_establecimiento }}</td>
@@ -57,14 +57,14 @@
                             <td width="20%">
                                  <form action="{{ route('appoinments.destroy', $appointment->id) }}" method="post">
                                     <a href="{{ route('appoinments.show', $appointment->id) }}"><button type="button" class="btn btn-info"><i class="fas fa-eye"></i></button></a>
-                                    <a href=""><button type="button" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button></a>
+                                    <a href="{{ route('appoinments.edit', $appointment->id) }}"><button type="button" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button></a>
                                     @csrf
                                      @method('DELETE')
                                     <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt" style="color:black"></i></button> 
                                 </form>
                             </td>
                         </tr>
-                  
+                    @endif
                         @endforeach
                         @endif
                         @endforeach

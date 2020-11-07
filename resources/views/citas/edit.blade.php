@@ -1,8 +1,5 @@
 @extends('layouts.app')
 
-@section('javascript')
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js" defer></script>
-@endsection
 @section('content')
 
     <div class="container">
@@ -11,33 +8,18 @@
                 <div class="card">
                   
                 <div style="text-align: center" class="card-title">
-                        <h3 class="card-text">Ingresar la cita del cliente</h3>
+                        <h3 class="card-text">Editar la cita del cliente</h3>
                     </div>
                     <div class="card-body">
-                        <form action="/appoinments" method="POST">
+                        <form action="{{route('appoinments.update',$appointment->id)}}" method="POST">
+                        @method('PATCH')
                             @csrf
-                            <div class="form-group row">
-                            <label for="cliente" class="col-md-4 col-form-label text-md-right">Código de fumigación:</label>
-                            <div class="col-md-6">
-                            <label for="cliente" id='codigo' value='{{$codigo}}' class="col-md-4 col-form-label text-md-right">{{$codigo}}</label>
-                            <input type="text" id="codigo" class="form-control" name="codigo" value='{{$codigo}}' hidden  aria-describedby="codigoHelp">
-                            </div>
-                            </div>
                             <div class="form-group row">
                             <label for="cliente" class="col-md-4 col-form-label text-md-right">Cliente:</label>
 
                             <div class="col-md-6">
-                                <select id="input-cliente"  class="form-control" name="cliente" required autofocus>
-                                <option value="0">Seleccione el cliente</option>
-                                @foreach ($clients as $client)
-                                <option value="{{$client->id}}">{{$client->nombre_cliente}}</option>
-                                @endforeach
-                                </select>
-                                @error('cliente')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                               
+                            <label for="cliente" class="col-md-4 col-form-label text-md-right">{{$appointment->establishment->client->nombre_cliente}}</label>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -45,7 +27,10 @@
 
                             <div class="col-md-6">
                                 <select id="lugar"  class="form-control @error('lugar') is-invalid @enderror select2-lugar" name="lugar" required autocomplete="lugar" autofocus>
-                                <option value="0">Seleccione el establecimiento</option>
+                                <option value="{{$appointment->establishment->id}}">{{$appointment->establishment->nombre_establecimiento}}</option>
+                                @foreach ($appointment->establishment->client->establishments as $establecimiento)
+                                <option value="{{$establecimiento->id}}">{{$establecimiento->nombre_establecimiento}}</option>
+                                @endforeach
                                 </select>
                                 @error('lugar')
                                     <span class="invalid-feedback" role="alert">
@@ -59,7 +44,7 @@
 
                             <div class="col-md-6">
                                 <select id="tipo_fumigacion"  class="form-control @error('tipo_fumigacion') is-invalid @enderror select2-tipo-fumigacion" name="tipo_fumigacion" required autocomplete="tipo_fumigacion" autofocus>
-                                <option value="0">Seleccione el tipo de fumigación</option>
+                                <option value="{{$appointment->fumigation_type->id}}">{{$appointment->fumigation_type->nombre_tipo_fumigacion}}</option>
                                 @foreach ($tipoFumigaciones as $tipo)
                                 <option value="{{$tipo->id}}">{{$tipo->nombre_tipo_fumigacion}}</option>
                                 @endforeach
@@ -71,12 +56,12 @@
                                 @enderror
                             </div>
                         </div>
-                       
+                  
                         <div class="form-group row">
                             <label for="fecha" class="col-md-4 col-form-label text-md-right">Fecha:</label>
 
                             <div class="col-md-6">
-                                <input id="fecha" type="date" class="form-control @error('fecha') is-invalid @enderror" name="fecha" required autocomplete="current-fecha">
+                                <input id="fecha" type="date" class="form-control @error('fecha') is-invalid @enderror" name="fecha" value='{{$appointment->fecha}}' required autocomplete="current-fecha">
 
                                 @error('fecha')
                                     <span class="invalid-feedback" role="alert">
@@ -90,6 +75,7 @@
 
                             <div class="col-md-6">
                                 <select id="hora"  class="form-control @error('hora') is-invalid @enderror select2-hora" name="hora" required autocomplete="hora" autofocus>
+                                <option value="{{$appointment->hora}}">Hora actual: {{$appointment->hora}}</option>
                                 <option value="08:00 AM">08:00 AM</option>
                                 <option value="09:00 AM">09:00 AM</option>
                                 <option value="10:00 AM">10:00 AM</option>
@@ -119,7 +105,7 @@
                             <label for="hora" class="col-md-4 col-form-label text-md-right">Precio estandar:</label>
 
                             <div class="col-md-6">
-                            <input type="text" id="precio" class="form-control" name="precio"  disabled aria-describedby="precioHelp">
+                            <input type="text" id="precio" class="form-control" name="precio" value='$ {{$appointment->establishment->establishment_type->costo_aproximado}}'  disabled aria-describedby="precioHelp">
                             </div>
                         </div>
                                   <div class="card-body">
@@ -141,25 +127,7 @@
     <script type="text/javascript">
        $( document ).ready(function() {
     
-        
-
-        $("#input-cliente").change(function(){
-        URL= "/citas/fetch_establecimientos"
-        const identificador = $(this).val();
-        console.log('1')
-        $.ajax({
-            url:URL,
-            data: {id: identificador},
-            success: function(resp){
-                let contenido= "   <option value=\"\" selected disabled hidden>Seleccione establecimiento</option>"
-                $.each(resp, function(index, value){
-                    contenido+= '<option value="'+value.id+'">'+value.nombre_establecimiento+'</option>';
-                });
-                console.log('2')
-                $("#lugar").html(contenido);
-            }
-        });
-    });
+    
 
     $("#lugar").change(function(){
         URL= "/citas/fetch_establecimientos_precio"
@@ -183,5 +151,4 @@
     
       });
     </script>
-   
-@endsection
+    @endsection
