@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ProductType;
 use App\Supplier;
 use Illuminate\Http\Request;
 
@@ -14,9 +15,41 @@ class SupplierController extends Controller
      */
     public function index()
     {
+        $products = ProductType::all();
+
         $suppliers =
-            Supplier::all(['id','nombre_proveedor','telefono_proveedor','celular_proveedor','correo_proveedor']);
-        return view('proveedores.index', compact("suppliers"));
+            Supplier::paginate(5);
+        return view('proveedores.index', compact(["suppliers","products"]));
+    }
+
+    /**
+     * Display a listing filtered by two params.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function filterSuppliers(Request $request)
+    {
+        $products = ProductType::all();
+        $name = $request['name_supplier'];
+        $product_type = $request['product_type'];
+        $suppliers = null;
+
+        if($name !== null && $product_type !== "0"){
+            $suppliers = Supplier::where('product_types_id','=',(int)$product_type)
+                ->where('nombre_proveedor','LIKE',"%{$name}%")
+                ->paginate(5);
+            return view('proveedores.index', compact(["suppliers","products"]));
+        } elseif($name !== null){
+            $suppliers = Supplier::where('nombre_proveedor','LIKE',"%{$name}%")
+                ->paginate(5);
+            return view('proveedores.index', compact(["suppliers","products"]));
+        } elseif ($product_type !== "0"){
+            $suppliers = Supplier::where('product_types_id','=',(int)$product_type)->paginate(5);
+            return view('proveedores.index', compact(["suppliers","products"]));
+        } else {
+            return redirect("suppliers");
+        }
     }
 
     /**
@@ -26,7 +59,8 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        return view('proveedores.create');
+        $products = ProductType::all();
+        return view('proveedores.create', compact("products"));
     }
 
     /**
@@ -40,14 +74,26 @@ class SupplierController extends Controller
         //Validando valores del request
         $data = $request->validate([
             'nombre_proveedor' => 'required|min:3|max:50',
-            'telefono_proveedor' => 'required',
-            'celular_proveedor' => 'required',
-            'correo_proveedor' => 'required',
+            'tipo_producto' => 'required',
+            'telefono_proveedor' => 'required|min:9|max:9',
+            'celular_proveedor' => 'required|min:9|max:9',
+            'correo_proveedor' => 'required|email|unique:suppliers,correo_proveedor',
             'direccion_proveedor' => 'required|min:3|max:100',
             'comentarios' => 'required|min:3|max:100'
         ]);
 
+        //Creando y guardando registro
+        $supplier = Supplier::create([
+           "nombre_proveedor" => $data['nombre_proveedor'],
+           "product_types_id" => $data['tipo_producto'],
+           "telefono_proveedor" => $data['telefono_proveedor'],
+           "celular_proveedor" => $data['celular_proveedor'],
+           "correo_proveedor" => $data['correo_proveedor'],
+           "direccion_proveedor" => $data['direccion_proveedor'],
+           "comentarios" => $data['comentarios']
+        ]);
 
+        return redirect("suppliers")->with("success","Proveedor creado con éxito");
     }
 
     /**
@@ -92,6 +138,11 @@ class SupplierController extends Controller
      */
     public function destroy(Supplier $supplier)
     {
-        //
+        try {
+            $supplier->delete();
+            return redirect('suppliers')->with("success","Proveedor eliminado con éxito");
+        } catch (exception $e) {
+            return redirect('suppliers')->with("error","Algo salió mal");
+        }
     }
 }

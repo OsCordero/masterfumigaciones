@@ -13,9 +13,23 @@ class ProductTypeSeeder extends Seeder
      */
     public function run()
     {
+        //Products
+        ProductType::create([
+            "nombre_tipo_producto" => "Pesticidas",
+        ]);
+
+        ProductType::create([
+            "nombre_tipo_producto" => "Equipo deBioseguridad",
+        ]);
+
+        ProductType::create([
+            "nombre_tipo_producto" => "Venenos comúnes",
+        ]);
+
         // Suppliers
         Supplier::create([
            "nombre_proveedor" => "Proveedor 1",
+            "product_types_id" => 1,
             "direccion_proveedor" => "Direccion 1",
             "telefono_proveedor" => "2222-2221",
             "celular_proveedor" => "7777-7771",
@@ -25,6 +39,7 @@ class ProductTypeSeeder extends Seeder
 
         Supplier::create([
             "nombre_proveedor" => "Proveedor 2",
+            "product_types_id" => 2,
             "direccion_proveedor" => "Direccion 2",
             "telefono_proveedor" => "2222-2222",
             "celular_proveedor" => "7777-7772",
@@ -34,6 +49,7 @@ class ProductTypeSeeder extends Seeder
 
         Supplier::create([
             "nombre_proveedor" => "Proveedor 3",
+            "product_types_id" => 1,
             "direccion_proveedor" => "Direccion 3",
             "telefono_proveedor" => "2222-2223",
             "celular_proveedor" => "7777-7773",
@@ -43,6 +59,7 @@ class ProductTypeSeeder extends Seeder
 
         Supplier::create([
             "nombre_proveedor" => "Proveedor 4",
+            "product_types_id" => 3,
             "direccion_proveedor" => "Direccion 4",
             "telefono_proveedor" => "2222-2224",
             "celular_proveedor" => "7777-7774",
@@ -52,87 +69,12 @@ class ProductTypeSeeder extends Seeder
 
         Supplier::create([
             "nombre_proveedor" => "Proveedor 5",
+            "product_types_id" => 2,
             "direccion_proveedor" => "Direccion 5",
             "telefono_proveedor" => "2222-2225",
             "celular_proveedor" => "7777-7775",
             "correo_proveedor" => "proveedor5@gmail.com",
             "comentarios" => "Comentarios 5"
-        ]);
-
-        //Products
-        ProductType::create([
-            "nombre_tipo_producto" => "Producto 1",
-            "supplier_id" => 1
-        ]);
-
-        ProductType::create([
-            "nombre_tipo_producto" => "Producto 2",
-            "supplier_id" => 1
-        ]);
-
-        ProductType::create([
-            "nombre_tipo_producto" => "Producto 3",
-            "supplier_id" => 1
-        ]);
-
-        ProductType::create([
-            "nombre_tipo_producto" => "Producto 4",
-            "supplier_id" => 2
-        ]);
-
-        ProductType::create([
-            "nombre_tipo_producto" => "Producto 5",
-            "supplier_id" => 2
-        ]);
-
-        ProductType::create([
-            "nombre_tipo_producto" => "Producto 6",
-            "supplier_id" => 3
-        ]);
-
-        ProductType::create([
-            "nombre_tipo_producto" => "Producto 7",
-            "supplier_id" => 3
-        ]);
-
-        ProductType::create([
-            "nombre_tipo_producto" => "Producto 8",
-            "supplier_id" => 3
-        ]);
-
-        ProductType::create([
-            "nombre_tipo_producto" => "Producto 9",
-            "supplier_id" => 4
-        ]);
-
-        ProductType::create([
-            "nombre_tipo_producto" => "Producto 10",
-            "supplier_id" => 5
-        ]);
-
-        ProductType::create([
-            "nombre_tipo_producto" => "Producto 11",
-            "supplier_id" => 5
-        ]);
-
-        ProductType::create([
-            "nombre_tipo_producto" => "Producto 12",
-            "supplier_id" => 5
-        ]);
-
-        ProductType::create([
-            "nombre_tipo_producto" => "Producto 13",
-            "supplier_id" => 5
-        ]);
-
-        ProductType::create([
-            "nombre_tipo_producto" => "Producto 14",
-            "supplier_id" => 5
-        ]);
-
-        ProductType::create([
-            "nombre_tipo_producto" => "Producto 15",
-            "supplier_id" => 4
         ]);
     }
 }

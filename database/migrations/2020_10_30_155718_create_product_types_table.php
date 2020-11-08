@@ -16,8 +16,6 @@ class CreateProductTypesTable extends Migration
         Schema::create('product_types', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre_tipo_producto', 50);
-            $table->unsignedBigInteger('supplier_id');
-            $table->foreign('supplier_id')->references('id')->on('suppliers');
             $table->timestamps();
         });
     }

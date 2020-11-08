@@ -28,6 +28,25 @@
                             </div>
 
                             <div class="form-group">
+                                 <label for="tipo_producto">Tipo Producto</label>
+                                 <select id="tipo_producto"
+                                         name="tipo_producto"
+                                         class="form-control @error('tipo_producto') is-invalid @enderror">
+                                     <option value="">Seleccione...</option>
+                                     @foreach( $products as $product)
+                                         <option value="{{$product->id}}" {{ old('tipo_producto') == $product->id ? 'selected':'' }}>
+                                             {{$product->nombre_tipo_producto}}
+                                         </option>
+                                     @endforeach
+                                 </select>
+                                @error('tipo_producto')
+                                <span class="invalid-feedback d-block" role="alert">
+                                    <strong>{{$message}}</strong>
+                                </span>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
                                 <label for="telefono_proveedor">Teléfono</label>
                                 <input type="tel"
                                        class="form-control @error('telefono_proveedor') is-invalid @enderror"
@@ -75,9 +94,8 @@
                                 <label for="direccion_proveedor">Dirección</label>
                                 <textarea name="direccion_proveedor"
                                           id="direccion_proveedor"
-                                          value="{{ old('direccion_proveedor') }}"
                                           class="form-control @error('direccion_proveedor') is-invalid @enderror"
-                                          rows="3"></textarea>
+                                          rows="3">{{ old('direccion_proveedor') }}</textarea>
                                 @error('direccion_proveedor')
                                 <span class="invalid-feedback d-block" role="alert">
                                         <strong>{{$message}}</strong>
@@ -89,9 +107,8 @@
                                 <label for="comentarios">Comentarios</label>
                                 <textarea name="comentarios"
                                           id="comentarios"
-                                          value="{{ old('comentarios') }}"
                                           class="form-control @error('comentarios') is-invalid @enderror"
-                                          rows="3"></textarea>
+                                          rows="3">{{ old('comentarios') }}</textarea>
                                 @error('comentarios')
                                 <span class="invalid-feedback d-block" role="alert">
                                         <strong>{{$message}}</strong>
@@ -105,7 +122,7 @@
                                 </div>
                                 <div class="limpiarCancelar-boton">
                                     <button type="reset" class="btn btn-secondary">Limpiar</button>
-                                    <a href="{{route('users.index')}}"><button type="button" class="btn btn-danger">Cancelar</button></a>
+                                    <a href="{{route('suppliers.index')}}"><button type="button" class="btn btn-danger">Cancelar</button></a>
                                     <div/>
 
                                 </div>
@@ -118,7 +135,6 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('js/jquery.mask.js') }}"></script>
                 <script>
                     $(document).ready(function(){
                         $("#telefono_proveedor").mask("0000-0000");

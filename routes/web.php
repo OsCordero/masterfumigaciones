@@ -23,8 +23,10 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/suppliers', 'SupplierController@index')->name('suppliers.index');
+Route::post('/suppliers', 'SupplierController@filterSuppliers')->name('suppliers.filter');
 Route::get('/suppliers/create','SupplierController@create')->name('suppliers.create');
 Route::post('/suppliers/create', 'SupplierController@store')->name('suppliers.store');
+Route::delete('/suppliers/{supplier}', 'SupplierController@destroy')->name('suppliers.destroy');
 //Routes
 
 Route::middleware(['auth'])->group(function(){

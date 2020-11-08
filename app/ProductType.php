@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+use App\Supplier;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,6 +13,6 @@ class ProductType extends Model
     ];
     public function supplier()
     {
-        return $this->belongsTo('App\Supplier');
+        return $this->hasMany(Supplier::class);
     }
 }
