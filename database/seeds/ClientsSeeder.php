@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 use \App\Client;
+use \Database\Factories\ClientsFactory;
+
 class ClientsSeeder extends Seeder
 {
     /**
@@ -11,6 +13,9 @@ class ClientsSeeder extends Seeder
      */
     public function run()
     {
+        factory(Client::class,15)->create();
+
+        /*
         Client::create([
             "nombre_cliente" => "Cliente 1",
             "dui" => "111111111",
@@ -189,5 +194,6 @@ class ClientsSeeder extends Seeder
             "correo_cliente" => "cliente20@gmail.com",
             "comentarios" => "comentario 20"
         ]);
+        */
     }
 }
