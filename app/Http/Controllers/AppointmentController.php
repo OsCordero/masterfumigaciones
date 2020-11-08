@@ -165,4 +165,9 @@ class AppointmentController extends Controller
         return response()->json($data);
     }
 
+    public function asignarEmpleado($id)
+    {
+        $appointment = Appointment::find($id);
+        return view('citas.employees',compact('appointment'));
+    }
 }

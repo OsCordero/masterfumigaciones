@@ -36,6 +36,9 @@ Route::middleware(['auth'])->group(function(){
     Route::resource('appoinments', 'AppointmentController');
     Route::get('/citas/fetch_establecimientos/', 'AppointmentController@fetchEstablecimientos');
     Route::get('/citas/fetch_establecimientos_precio/', 'AppointmentController@fetchEstablecimientos_precio');
+
+    //Ruta para asignar empleados
+    Route::get('/citas/empleados/{id}','AppointmentController@asignarEmpleado')->name('asignarEmpleado');
     Route::get('/reportes1', 'AppointmentController@reporte1_captura')->name('reporte1.captura');
 
     Route::get('/reportes2', 'AppointmentController@reporte2_captura')->name('reporte2.captura');
