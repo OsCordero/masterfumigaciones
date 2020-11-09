@@ -21,7 +21,7 @@ class CreateSuppliersTable extends Migration
             $table->string('direccion_proveedor', 100);
             $table->string('telefono_proveedor', 9);
             $table->string('celular_proveedor', 9);
-            $table->string('correo_proveedor', 30)->unique();
+            $table->string('correo_proveedor', 50)->unique();
             $table->string('comentarios', 100);
             $table->timestamps();
         });

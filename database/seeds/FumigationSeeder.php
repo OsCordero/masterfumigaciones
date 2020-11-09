@@ -34,6 +34,8 @@ class FumigationSeeder extends Seeder
         ]);
 
         // Appointments
+        factory(Appointment::class,50)->create();
+        /*
         Appointment::create([
             "codigo_fumigacion" => "abc101",
             "fecha" => "2020-12-01",
@@ -385,5 +387,6 @@ class FumigationSeeder extends Seeder
             "fumigation_type_id" => 1,
             "establishment_id" => 7
         ]);
+        */
     }
 }

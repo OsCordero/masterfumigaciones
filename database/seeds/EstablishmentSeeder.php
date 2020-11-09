@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use \App\Establishment_Type;
 use \App\Establishment;
+use \Database\Factories\EstablishmentsFactory;
 
 class EstablishmentSeeder extends Seeder
 {
@@ -38,7 +39,7 @@ class EstablishmentSeeder extends Seeder
             "costo_aproximado" => 109.99
         ]);
 
-        //Creación de establishments
+        /*
         Establishment::create([
             "nombre_establecimiento" => "Establecimiento 1",
             "direccion_establecimiento" => "Dirección 1",
@@ -94,5 +95,6 @@ class EstablishmentSeeder extends Seeder
             "client_id" => 7,
             "establishment_type_id" => 1
         ]);
+        */
     }
 }

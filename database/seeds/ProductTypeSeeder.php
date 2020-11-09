@@ -27,6 +27,8 @@ class ProductTypeSeeder extends Seeder
         ]);
 
         // Suppliers
+        factory(Supplier::class,7)->create();
+        /*
         Supplier::create([
            "nombre_proveedor" => "Proveedor 1",
             "product_types_id" => 1,
@@ -76,5 +78,6 @@ class ProductTypeSeeder extends Seeder
             "correo_proveedor" => "proveedor5@gmail.com",
             "comentarios" => "Comentarios 5"
         ]);
+        */
     }
 }
