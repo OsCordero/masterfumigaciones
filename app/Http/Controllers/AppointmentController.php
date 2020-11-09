@@ -7,6 +7,7 @@ use App\Client;
 use App\Establishment;
 use App\Fumigation_Type;
 use App\Establishment_Type;
+use App\Employee;
 use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
@@ -168,6 +169,7 @@ class AppointmentController extends Controller
     public function asignarEmpleado($id)
     {
         $appointment = Appointment::find($id);
-        return view('citas.employees',compact('appointment'));
+        $employees = Employee::all();
+        return view('citas.employees',compact('appointment','employees'));
     }
 }
