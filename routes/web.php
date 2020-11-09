@@ -22,10 +22,14 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+//Routes for suppliers resource
 Route::get('/suppliers', 'SupplierController@index')->name('suppliers.index');
 Route::post('/suppliers', 'SupplierController@filterSuppliers')->name('suppliers.filter');
 Route::get('/suppliers/create','SupplierController@create')->name('suppliers.create');
 Route::post('/suppliers/create', 'SupplierController@store')->name('suppliers.store');
+Route::get('/suppliers/{supplier}','SupplierController@show')->name('suppliers.show');
+Route::get('/suppliers/{supplier}/edit', 'SupplierController@edit')->name('suppliers.edit');
+Route::put('/suppliers/{supplier}', 'SupplierController@update')->name('suppliers.update');
 Route::delete('/suppliers/{supplier}', 'SupplierController@destroy')->name('suppliers.destroy');
 //Routes
 

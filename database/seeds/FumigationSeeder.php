@@ -22,7 +22,7 @@ class FumigationSeeder extends Seeder
         ]);
 
         Fumigation_Type::create([
-            "nombre_tipo_fumigacion" => "Asesino de geckos :V"
+            "nombre_tipo_fumigacion" => "Asesino de geckos"
         ]);
 
         Fumigation_Type::create([

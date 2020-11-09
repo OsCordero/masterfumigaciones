@@ -1,20 +1,27 @@
  .guardar-boton {
      text-align: center;
  }
- 
+
  .limpiarCancelar-boton {
      margin-top: 15px;
  }
- 
+
  .navbar,
  .cerrar-sesion-color:active {
      background-color: #ffe05d!important;
      color: black;
  }
- 
+
  .negrita {
      color: #000000;
      font-weight: bold;
      font-size: medium;
      font-family: sans-serif;
+ }
+
+ #filter_bar{
+     background-color: gainsboro !important;
+     color: black;
+     padding-top: 2%;
+     padding-bottom: 2%;
  }

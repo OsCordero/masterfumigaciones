@@ -19,7 +19,7 @@ class ProductTypeSeeder extends Seeder
         ]);
 
         ProductType::create([
-            "nombre_tipo_producto" => "Equipo deBioseguridad",
+            "nombre_tipo_producto" => "Equipo de Bioseguridad",
         ]);
 
         ProductType::create([

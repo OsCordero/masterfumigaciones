@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\ProductType;
 use App\Supplier;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class SupplierController extends Controller
 {
@@ -92,7 +93,7 @@ class SupplierController extends Controller
            "direccion_proveedor" => $data['direccion_proveedor'],
            "comentarios" => $data['comentarios']
         ]);
-
+        //Redireccionar a index con mensaje de éxito
         return redirect("suppliers")->with("success","Proveedor creado con éxito");
     }
 
@@ -104,7 +105,8 @@ class SupplierController extends Controller
      */
     public function show(Supplier $supplier)
     {
-        //
+        $products = ProductType::all();
+        return view('proveedores.show', compact(['supplier','products']));
     }
 
     /**
@@ -115,7 +117,8 @@ class SupplierController extends Controller
      */
     public function edit(Supplier $supplier)
     {
-        //
+        $products = ProductType::all();
+        return view('proveedores.edit', compact(['supplier','products']));
     }
 
     /**
@@ -127,7 +130,31 @@ class SupplierController extends Controller
      */
     public function update(Request $request, Supplier $supplier)
     {
-        //
+        //Validando valores del request
+        $data = $request->validate([
+            'nombre_proveedor' => 'required|min:3|max:50',
+            'tipo_producto' => 'required',
+            'telefono_proveedor' => 'required|min:9|max:9',
+            'celular_proveedor' => 'required|min:9|max:9',
+            'correo_proveedor' => ['required','email',Rule::unique('suppliers')->ignore($supplier->id)],
+            'direccion_proveedor' => 'required|min:3|max:100',
+            'comentarios' => 'required|min:3|max:100'
+        ]);
+
+        //Asignando valores nuevos al objeto
+        $supplier->nombre_proveedor = $data["nombre_proveedor"];
+        $supplier->product_types_id = $data["tipo_producto"];
+        $supplier->telefono_proveedor = $data["telefono_proveedor"];
+        $supplier->celular_proveedor = $data["celular_proveedor"];
+        $supplier->correo_proveedor = $data["correo_proveedor"];
+        $supplier->direccion_proveedor = $data["direccion_proveedor"];
+        $supplier->comentarios = $data["comentarios"];
+
+        //Guardar objeto
+        $supplier->save();
+
+        //Redireccionar a index con mensaje de éxito
+        return redirect("suppliers")->with("success","Proveedor actualizado con éxito");
     }
 
     /**

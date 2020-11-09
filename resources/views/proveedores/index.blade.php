@@ -26,7 +26,7 @@
                     un nuevo proveedor</button></a></h2>
         <br>
             <div class="row justify-content-center">
-                <nav class="w-100 mb-1 navbar navbar-default bg-default">
+                <nav id="filter_bar" class="w-100 mb-1 navbar-dark navbar-default bg-">
                     <form action="{{ route('suppliers.filter') }}" method="post" novalidate
                           class="w-100 form-inline">
                         @csrf
@@ -77,8 +77,8 @@
                         <td width="20%">{{ $supplier->producttypes->nombre_tipo_producto }}</td>
                         <td width="20%">
                             <form method="post" action="{{ route('suppliers.destroy',$supplier->id) }}">
-                                <a href="{{ route('users.show', $supplier->id) }}"><button type="button" class="btn btn-info"><i class="fas fa-eye"></i></button></a>
-                                <a href="{{ route('users.edit', $supplier->id) }}"><button type="button" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button></a>
+                                <a href="{{ route('suppliers.show', $supplier->id) }}"><button type="button" class="btn btn-info"><i class="fas fa-eye"></i></button></a>
+                                <a href="{{ route('suppliers.edit', $supplier->id) }}"><button type="button" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button></a>
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit"
