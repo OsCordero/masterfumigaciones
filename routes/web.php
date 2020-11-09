@@ -39,6 +39,8 @@ Route::middleware(['auth'])->group(function(){
 
     //Ruta para asignar empleados
     Route::get('/citas/empleados/{id}','AppointmentController@asignarEmpleado')->name('asignarEmpleado');
+    Route::get('/citas/monto/{id}','AppointmentController@asignarMonto')->name('appoinments.monto');
+    Route::get('/citas/guardarMonto/{id}', 'AppointmentController@guardarMonto')->name('appoinments.guardarMonto');
     Route::get('/reportes1', 'AppointmentController@reporte1_captura')->name('reporte1.captura');
 
     Route::get('/reportes2', 'AppointmentController@reporte2_captura')->name('reporte2.captura');

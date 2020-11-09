@@ -63,6 +63,7 @@
                                      @method('DELETE')
                                     <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt" style="color:black"></i></button> 
                                     <a href="{{ route('asignarEmpleado', $appointment->id) }}"><button type="button" class="btn btn-warning"><i class="fas fa-users"></i></button></a>
+                                    <a href="{{ route('appoinments.monto', $appointment->id) }}"><button type="button" class="btn btn-warning"><i class="fas fa-dollar-sign"></i></button></a>
                                 </form>
                                 
                             </td>

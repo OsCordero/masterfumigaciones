@@ -172,4 +172,17 @@ class AppointmentController extends Controller
         $employees = Employee::all();
         return view('citas.employees',compact('appointment','employees'));
     }
+
+    public function asignarMonto($id){
+        $appointment = Appointment::find($id);
+        return view('citas.monto',compact('appointment'));
+    }
+
+    public function guardarMonto(Request $request, $id){
+      
+        $appointment = Appointment::find($id);
+        $appointment->monto = $request['monto'];
+        $appointment->save();
+        return redirect('appoinments');
+    }
 }
