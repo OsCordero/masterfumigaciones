@@ -31,14 +31,14 @@
                           class="w-100 form-inline">
                         @csrf
                         <div class="form-group col-md-5">
-                            <label for="name_supplier">Nombre Proveedor: </label>
+                            <label for="name_supplier">Nombre: </label>
                             <input id="name_supplier" name="name_supplier"
                                 class="form-control ml-1" style="width:70%" type="text"
                                 placeholder="Digite el nombre parcial o completo..."/>
                         </div>
 
                         <div class="form-group col-md-5">
-                            <label for="product_type">Tipo Producto: </label>
+                            <label for="product_type">Tipo de Producto: </label>
                             <select class="form-control ml-1"  style="width:70%"
                                     id="product_type" name="product_type">
                                 <option value="0">Seleccione...</option>
@@ -62,9 +62,8 @@
                 <thead class="thead-light">
                 <tr>
                     <th scope="col">Nombre</th>
-                    <th scope="col">Teléfono</th>
-                    <th scope="col">Teléfono Celular</th>
                     <th scope="col">Producto</th>
+                    <th scope="col">Teléfono</th>
                     <th scope="col"><center>Acciones</center></th>
                 </tr>
                 </thead>
@@ -72,10 +71,9 @@
                 @foreach ($suppliers as $supplier)
                     <tr>
                         <th scope="row" width="20%" >{{ $supplier->nombre_proveedor }}</th>
-                        <td width="20%">{{ $supplier->telefono_proveedor }}</td>
-                        <td width="20%">{{ $supplier->celular_proveedor }}</td>
                         <td width="20%">{{ $supplier->producttypes->nombre_tipo_producto }}</td>
-                        <td width="20%">
+                        <td width="20%">{{ $supplier->telefono_proveedor }}</td>
+                        <td width="20%" style="text-align: center;">
                             <form method="post" action="{{ route('suppliers.destroy',$supplier->id) }}">
                                 <a href="{{ route('suppliers.show', $supplier->id) }}"><button type="button" class="btn btn-info"><i class="fas fa-eye"></i></button></a>
                                 <a href="{{ route('suppliers.edit', $supplier->id) }}"><button type="button" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button></a>

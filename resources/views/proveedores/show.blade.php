@@ -12,77 +12,67 @@
                     <hr>
                     <div class="card-body">
                         <form>
-                            <div class="form-group">
-                                <label for="nombre_proveedor">Nombre de Proveedor</label>
-                                <input type="text"
-                                       readonly
-                                       class="form-control" name="nombre_proveedor"
-                                       value="{{ $supplier->nombre_proveedor }}"
-                                       id="nombre_proveedor">
+                            <div class="row mb-2">
+                                <div class="col-md-3">
+                                    <label for="nombre_proveedor">Nombre:</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <label>{{ $supplier->nombre_proveedor }}</label>
+                                </div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="tipo_producto">Tipo Producto</label>
-                                <select id="tipo_producto"
-                                        disabled
-                                        name="tipo_producto"
-                                        class="form-control">
-                                    <option value="">Seleccione...</option>
-                                    @foreach( $products as $product)
-                                        <option value="{{$product->id}}"
-                                            {{ $supplier->producttypes->id == $product->id ? 'selected':'' }}>
-                                            {{$product->nombre_tipo_producto}}
-                                        </option>
-                                    @endforeach
-                                </select>
+                            <div class="row mb-2">
+                                <div class="col-md-3">
+                                    <label for="tipo_producto">Tipo de producto:</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <label>{{$supplier->producttypes->nombre_tipo_producto}}</label>
+                                </div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="telefono_proveedor">Teléfono</label>
-                                <input type="tel"
-                                       readonly
-                                       class="form-control"
-                                       value="{{ $supplier->telefono_proveedor }}"
-                                       name="telefono_proveedor"
-                                       id="telefono_proveedor">
+                            <div class="row mb-2">
+                                <div class="col-md-3">
+                                    <label for="direccion_proveedor">Dirección:</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <label>{{ $supplier->direccion_proveedor }}</label>
+                                </div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="celular_proveedor">Teléfono Celular</label>
-                                <input type="tel"
-                                       readonly
-                                       class="form-control"
-                                       name="celular_proveedor"
-                                       value="{{ $supplier->celular_proveedor }}"
-                                       id="celular_proveedor">
+                            <div class="row mb-2">
+                                <div class="col-md-3">
+                                    <label for="telefono_proveedor">Teléfono:</label>
+                                </div>
+                                <div class="col-md-9">
+                                    {{ $supplier->telefono_proveedor }}
+                                </div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="correo_proveedor">Correo electrónico</label>
-                                <input type="email"
-                                       readonly
-                                       class="form-control"
-                                       name="correo_proveedor"
-                                       value="{{ $supplier->correo_proveedor }}"
-                                       id="correo_proveedor" />
+                            <div class="row mb-2">
+                                <div class="col-md-3">
+                                    <label for="celular_proveedor">Celular:</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <label>{{ $supplier->celular_proveedor }}</label>
+                                </div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="direccion_proveedor">Dirección</label>
-                                <textarea name="direccion_proveedor"
-                                          id="direccion_proveedor"
-                                          readonly
-                                          class="form-control"
-                                          rows="3">{{ $supplier->direccion_proveedor }}</textarea>
+                            <div class="row mb-2">
+                                <div class="col-md-3">
+                                    <label for="correo_proveedor">Correo electrónico:</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <label>{{ $supplier->correo_proveedor }}</label>
+                                </div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="comentarios">Comentarios</label>
-                                <textarea name="comentarios"
-                                          id="comentarios"
-                                          readonly
-                                          class="form-control"
-                                          rows="3">{{ $supplier->comentarios }}</textarea>
+                            <div class="row mb-2">
+                                <div class="col-md-3">
+                                    <label for="comentarios">Comentarios:</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <label>{{ $supplier->comentarios }}</label>
+                                </div>
                             </div>
 
                             <div class="card-body">
