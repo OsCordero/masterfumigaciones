@@ -8,7 +8,7 @@
                 <div class="card">
                   
                 <div style="text-align: center" class="card-title">
-                        <h3 class="card-text">Cita de fumigación</h3>
+                        <h3 class="card-text">Ingresar el monto de la venta</h3>
                     </div>
                     
                     <div class="card-body">
@@ -31,7 +31,7 @@
                             <label for="fecha" class="col-md-4 col-form-label text-md-left"><strong>Fecha:</strong> </label>
 
                             <div class="col-md-6">
-                            <label for="cliente" class="col-md-8 col-form-label text-md-center">{{$appointment->fecha}}</label> 
+                            <label for="cliente" class="col-md-8 col-form-label text-md-center">{!! \Carbon\Carbon::parse($appointment->fecha)->format('d-m-Y') !!}</label> 
                             </div>
                         </div>
                         <div class="form-group row">

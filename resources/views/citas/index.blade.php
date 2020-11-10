@@ -51,7 +51,7 @@
                             <th scope="row" width="20%" >{{ $client->nombre_cliente }}</th>
                             <td width="25%">{{ $establishment->nombre_establecimiento }}</td>
 
-                            <td width="10%">{{ $appointment->fecha}}</td>
+                            <td width="10%">{!! \Carbon\Carbon::parse($appointment->fecha)->format('d-m-Y') !!}</td>
                             <td width="10%">{{ $appointment->hora}}</td>           
                                                
                             <td width="20%">

@@ -19,7 +19,7 @@
 
                             <div class="col-md-6">
                                
-                            <label for="cliente" class="col-md-4 col-form-label text-md-right">{{$appointment->establishment->client->nombre_cliente}}</label>
+                            <label for="cliente" class="col-md-7 col-form-label text-md-right">{{$appointment->establishment->client->nombre_cliente}}</label>
                             </div>
                         </div>
                         <div class="form-group row">
