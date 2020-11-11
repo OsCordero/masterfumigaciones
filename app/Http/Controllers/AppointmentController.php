@@ -8,6 +8,7 @@ use App\Establishment;
 use App\Fumigation_Type;
 use App\Establishment_Type;
 use App\Employee;
+use PDF;
 use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
@@ -137,7 +138,8 @@ class AppointmentController extends Controller
 
     public function reporte1_captura()
     {
-        return view('reportes/reporte1_captura');
+        $clients = Client::all();
+        return view('reportes/reporte1_captura', compact('clients'));
     }
 
     public function reporte2_captura()
@@ -184,5 +186,15 @@ class AppointmentController extends Controller
         $appointment->monto = $request['monto'];
         $appointment->save();
         return redirect('appoinments');
+    }
+
+    public function pdf1(Request $request, $id_cliente)
+    {
+        $fechaInicio = $request['fecha_inicio'];
+        $fechaFin = $request['fecha_fin'];
+        $client=Client::find($id_cliente);
+        
+        $pdf = PDF::loadView('reportes/pdfreporte1', compact('client', 'fechaInicio','fechaFin'));
+        return $pdf->download('reporte_tactico.pdf');
     }
 }
