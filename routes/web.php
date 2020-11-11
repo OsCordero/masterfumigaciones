@@ -45,6 +45,7 @@ Route::middleware(['auth'])->group(function(){
     //Rutas para los reportes
     Route::get('/reportes1', 'AppointmentController@reporte1_captura')->name('reporte1.captura');
     Route::get('/reporte_pdf1/{id}', 'AppointmentController@pdf1')->name('reporte1');
+    Route::get('/reporte_pdf2', 'AppointmentController@pdf2')->name('reporte2');
 
     Route::get('/reportes2', 'AppointmentController@reporte2_captura')->name('reporte2.captura');
 });
