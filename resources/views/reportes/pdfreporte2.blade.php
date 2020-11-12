@@ -37,10 +37,12 @@
           text-align: left;
           margin-bottom: 10px;
           position: absolute;
+         
         }
         
         #logo img {
           width: 90px;
+        
         }
         
         h1 {
@@ -165,8 +167,17 @@
   </head>
   <body>
     <header class="clearfix">
+    <h1>
+      <div id="logo">
+      <img src="C:/Users/Roberto Ventura/Desktop/masterfumigaciones/public/img">
       
-      <h1>
+      </div>
+      Masterfumigaciones
+      <br>
+     
+    </header>
+    <main>
+    <h1>
      <b>Fumigaciones canceladas en un periodo de tiempo.</b> 
       <br>
         </br>
@@ -178,8 +189,6 @@
       
        <h2 ><b>Fecha inicio: </b>{!! \Carbon\Carbon::parse($fechaInicio)->format('d-m-Y') !!} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;       <b>Fecha fin: </b>{!! \Carbon\Carbon::parse($fechaFin)->format('d-m-Y') !!} </h2>
 
-    </header>
-    <main>
       <table>
         <thead>
           <tr>

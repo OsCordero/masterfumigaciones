@@ -206,6 +206,8 @@ class AppointmentController extends Controller
         
         $pdf = PDF::loadView('reportes/pdfreporte2', compact('clients', 'fechaInicio','fechaFin'));
         return $pdf->download('reporte_estrategico.pdf');
+
+        //return view('reportes.pdfreporte2', compact('clients', 'fechaInicio','fechaFin'));
     }
 
 
