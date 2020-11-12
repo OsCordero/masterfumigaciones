@@ -11,6 +11,7 @@
                 <div class="card">
                   
                 <div style="text-align: center" class="card-title">
+                <br>
                         <h3 class="card-text">Ingresar la cita del cliente</h3>
                     </div>
                     <div class="card-body">

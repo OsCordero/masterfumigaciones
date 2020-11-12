@@ -8,6 +8,7 @@
                 <div class="card">
                   
                 <div style="text-align: center" class="card-title">
+                <br>
                         <h3 class="card-text">Ingresar el monto de la venta</h3>
                     </div>
                     

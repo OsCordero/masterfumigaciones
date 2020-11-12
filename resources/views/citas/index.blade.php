@@ -4,27 +4,40 @@
 <br>
 <br>
     <div class="container">
-        <h2>Listado de citas<a href="appoinments/create"><button type="button" class="btn btn-success float-right">Crear una cita</button></a></h2>
+        <h2><center>Listado de citas</center><a href="appoinments/create">
+        <br>
+        <button type="button" class="btn btn-success float-right">Crear una cita</button></a></h2>
+                    <br>
+                    <br>
                     <br>
 <form>
   <div class="form-row align-items-center">
-  <div class="col-sm-3 my-1">
-    
-      
-      <input id="cliente_buscar" type="text" class="form-control"  name="cliente_buscar" placeholder="Buscar cliente" required autocomplete="current-fecha_fin">
-    </div>
-    <div class="col-sm-3 my-1">
+
+<div class="form-row alinear">
+
+
+     <label for="cliente" class="col-1">Nombre:</label>
      
-      <input id="fecha_buscar" type="date" class="form-control"  name="fecha_buscar" required autocomplete="current-fecha_fin">
-    </div>
-  
+     
+      <input id="cliente_buscar" type="text" class="form-control col-md-3"  name="cliente_buscar" placeholder="Buscar cliente" required autocomplete="current-fecha_fin">
+
+      <label for="cliente" class="col-1">Fecha:</label>
+     
+      <input id="fecha_buscar" type="date" class="form-control col-md-3"  name="fecha_buscar" required autocomplete="current-fecha_fin">`
    
-  
-    <div class="col-auto my-1">
+     <div class="col-auto my-1">
       <button type="submit" class="btn btn-primary">Buscar</button>
     </div>
   </div>
+</div>    
+
+
+
+
+
+  
 </form>
+
 <br>
         <div class="row justify-content-center">
 
