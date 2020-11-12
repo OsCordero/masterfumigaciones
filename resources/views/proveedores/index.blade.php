@@ -22,8 +22,11 @@
             </div>
             @endif
 
-        <h2>Lista de proveedores <a href="{{ route('suppliers.create')}}"><button type="button" class="btn btn-success float-right">Agregar
+        <h2> <center> Lista de proveedores </center><a href="{{ route('suppliers.create')}}">
+        <br>
+        <button type="button" class="btn btn-success float-right">Agregar
                     un nuevo proveedor</button></a></h2>
+        <br>
         <br>
             <div class="row justify-content-center">
                 <nav id="filter_bar" class="w-100 mb-1  navbar-default bg-">
@@ -55,6 +58,7 @@
                     </form>
                 </nav>
             </div>
+            <br>
 
         <div class="row justify-content-center">
 
