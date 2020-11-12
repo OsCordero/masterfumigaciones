@@ -26,7 +26,7 @@
                     un nuevo proveedor</button></a></h2>
         <br>
             <div class="row justify-content-center">
-                <nav id="filter_bar" class="w-100 mb-1 navbar-dark navbar-default bg-">
+                <nav id="filter_bar" class="w-100 mb-1  navbar-default bg-">
                     <form action="{{ route('suppliers.filter') }}" method="post" novalidate
                           class="w-100 form-inline">
                         @csrf
@@ -38,7 +38,7 @@
                         </div>
 
                         <div class="form-group col-md-5">
-                            <label for="product_type">Tipo de Producto: </label>
+                            <label for="product_type">Tipo de producto: </label>
                             <select class="form-control ml-1"  style="width:70%"
                                     id="product_type" name="product_type">
                                 <option value="0">Seleccione...</option>
@@ -50,7 +50,7 @@
                             </select>
                         </div>
                         <div class="col-md-2 justify-content-center">
-                            <button class="btn btn-lg btn-outline-primary" type="submit">Buscar</button>
+                            <button class="btn  btn-primary" type="submit">Buscar</button>
                         </div>
                     </form>
                 </nav>

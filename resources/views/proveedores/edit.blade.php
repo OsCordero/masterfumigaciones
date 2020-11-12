@@ -7,6 +7,7 @@
                 <div class="card">
 
                     <div style="text-align: center" class="card-title">
+                    <br>
                         <h3 class="card-text">Editar la información del proveedor</h3>
                     </div>
                     <hr>
