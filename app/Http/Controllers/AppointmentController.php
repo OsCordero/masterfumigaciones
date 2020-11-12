@@ -7,6 +7,8 @@ use App\Client;
 use App\Establishment;
 use App\Fumigation_Type;
 use App\Establishment_Type;
+use App\Employee;
+use PDF;
 use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
@@ -35,7 +37,10 @@ class AppointmentController extends Controller
         $clients=Client::all();
         $tipoFumigaciones = Fumigation_Type::all();
         $tipoEstablecimientos = Establishment_Type::all();
-        return view('citas.create', compact('clients','tipoFumigaciones', 'tipoEstablecimientos'));
+        $date = date("Y");
+        $total = Appointment::select('id')->orderBy('id', 'desc')->first();
+        $codigo = 'F' . $date . ($total->id+1);
+        return view('citas.create', compact('clients','tipoFumigaciones', 'tipoEstablecimientos','codigo'));
 
     }
 
@@ -50,7 +55,7 @@ class AppointmentController extends Controller
         //
         
         $user = Appointment::create([
-            'codigo_fumigacion' => 123456789,
+            'codigo_fumigacion' => $request['codigo'],
             'fecha' => $request['fecha'],
             'hora' => $request['hora'],
             'cancelado' =>0,
@@ -73,10 +78,9 @@ class AppointmentController extends Controller
         //
         $appointment = Appointment::find($id);
     
-        $tipo_fumigacion = Fumigation_Type::find($appointment->fumigation_type_id);
-        $establecimiento = Establishment::find($appointment->establishment_id);
+  
       
-        return view('citas.show',compact('appointment', 'tipo_fumigacion', 'establecimiento'));
+        return view('citas.show',compact('appointment'));
     }
 
     /**
@@ -85,9 +89,13 @@ class AppointmentController extends Controller
      * @param  \App\Appointment  $appointment
      * @return \Illuminate\Http\Response
      */
-    public function edit(Appointment $appointment)
+    public function edit($id)
     {
         //
+        $tipoFumigaciones = Fumigation_Type::all();
+        $tipoEstablecimientos = Establishment_Type::all();
+        $appointment = Appointment::find($id);
+        return view('citas.edit',compact('appointment','tipoFumigaciones','tipoEstablecimientos'));
     }
 
     /**
@@ -97,9 +105,17 @@ class AppointmentController extends Controller
      * @param  \App\Appointment  $appointment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Appointment $appointment)
+    public function update(Request $request, $id)
     {
         //
+        
+        $appointment = Appointment::find($id);
+        $appointment->fecha = $request['fecha'];
+        $appointment->hora = $request['hora'];
+        $appointment->fumigation_type_id = $request['tipo_fumigacion'];
+        $appointment->establishment_id = $request['lugar'];
+        $appointment->save();
+        return redirect('appoinments');
     }
 
     /**
@@ -115,13 +131,15 @@ class AppointmentController extends Controller
 
         $appointment = Appointment::find($id);
 
-        $appointment->delete();
+        $appointment->cancelado = true;
+        $appointment->save();
         return redirect('appoinments');
     }
 
     public function reporte1_captura()
     {
-        return view('reportes/reporte1_captura');
+        $clients = Client::all();
+        return view('reportes/reporte1_captura', compact('clients'));
     }
 
     public function reporte2_captura()
@@ -141,12 +159,56 @@ class AppointmentController extends Controller
 
     public function fetchEstablecimientos_precio(Request $request)
     {
-        $filtro = $request['id'];
+        $establecimiento = Establishment::find($request['id']);
+        $filtro = $establecimiento->establishment_type_id;
         $data = Establishment_Type::select("costo_aproximado")
         ->where('id',$filtro)
         ->get();
 
         return response()->json($data);
     }
+
+    public function asignarEmpleado($id)
+    {
+        $appointment = Appointment::find($id);
+        $employees = Employee::all();
+        return view('citas.employees',compact('appointment','employees'));
+    }
+
+    public function asignarMonto($id){
+        $appointment = Appointment::find($id);
+        return view('citas.monto',compact('appointment'));
+    }
+
+    public function guardarMonto(Request $request, $id){
+      
+        $appointment = Appointment::find($id);
+        $appointment->monto = $request['monto'];
+        $appointment->save();
+        return redirect('appoinments');
+    }
+
+    public function pdf1(Request $request, $id_cliente)
+    {
+        $fechaInicio = $request['fecha_inicio'];
+        $fechaFin = $request['fecha_fin'];
+        $client=Client::find($id_cliente);
+        
+        $pdf = PDF::loadView('reportes/pdfreporte1', compact('client', 'fechaInicio','fechaFin'));
+        return $pdf->download('reporte_tactico.pdf');
+    }
+
+    public function pdf2(Request $request)
+    {
+        $fechaInicio = $request['fecha_inicio'];
+        $fechaFin = $request['fecha_fin'];
+        $clients=Client::all();
+        
+        $pdf = PDF::loadView('reportes/pdfreporte2', compact('clients', 'fechaInicio','fechaFin'));
+        return $pdf->download('reporte_estrategico.pdf');
+
+        //return view('reportes.pdfreporte2', compact('clients', 'fechaInicio','fechaFin'));
+    }
+
 
 }

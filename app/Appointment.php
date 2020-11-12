@@ -9,7 +9,7 @@ class Appointment extends Model
     //
 
     protected $fillable = [
-        'codigo_fumigacion', 'fecha', 'hora','cancelado','fumigation_type_id','establishment_id',
+        'codigo_fumigacion', 'fecha', 'hora','cancelado','fumigation_type_id','establishment_id','monto',
     ];
 
     public function establishment()

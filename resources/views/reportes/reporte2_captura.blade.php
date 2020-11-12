@@ -5,8 +5,11 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Fumigaciones canceladas en un periodo de tiempo</div>
-
+            </br>
+            
+            <div style="text-align: center" class="card-title">
+                        <h3 class="card-text">Fumigaciones canceladas en un periodo de tiempo</h3>
+                    </div>
                 <div class="card-body">
                 <form method="POST" action="{{ route('login') }}">
                         @csrf
@@ -43,7 +46,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="button" class="btn btn-primary" id="generar-reporte">
                                     Generar reporte
                                 </button>
                             </div>
@@ -54,4 +57,19 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function() {
+   
+
+    $(document).on("click", "#generar-reporte", function() {
+
+        //var cliente = $("#cliente").val();
+        var fechaInicio = $('#fecha_inicio').val();
+        var fechaFin = $('#fecha_fin').val();
+
+        window.location.href = "/reporte_pdf2/?fecha_inicio="+fechaInicio+"&fecha_fin="+fechaFin;
+    });
+
+});
+</script>
 @endsection

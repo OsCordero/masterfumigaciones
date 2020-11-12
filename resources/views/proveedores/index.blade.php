@@ -2,7 +2,6 @@
 @section('content')
 
     <br>
-    <br>
     <div class="container">
 
         @if(session('success'))

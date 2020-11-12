@@ -10,7 +10,8 @@ class Establishment extends Model
     protected $fillable = [
         'nombre_establecimiento', 
         'direccion_establecimiento',
-        'telefono_establecimiento',   
+        'telefono_establecimiento', 
+        'establishment_type_id',  
     ];
     public function establishment_type()
     {

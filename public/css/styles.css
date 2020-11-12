@@ -24,3 +24,10 @@
      padding-top: 2%;
      padding-bottom: 2%;
  }
+ 
+ .alinear {
+     width: 100%;
+     display: flex;
+     justify-content: space-around;
+     align-items: baseline;
+ }

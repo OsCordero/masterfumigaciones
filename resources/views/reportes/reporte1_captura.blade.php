@@ -5,19 +5,21 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Fumigaciones realizadas a un cliente en un periodo de tiempo</div>
-
+      </br>
+                <div style="text-align: center" class="card-title">
+                        <h3 class="card-text">Fumigaciones realizadas en un periodo de tiempo</h3>
+                    </div>
                 <div class="card-body">
-                <form method="POST" action="{{ route('login') }}">
-                        @csrf
+             
 
                         <div class="form-group row">
                             <label for="cliente" class="col-md-4 col-form-label text-md-right">Cliente:</label>
 
                             <div class="col-md-6">
                                 <select id="cliente"  class="form-control @error('cliente') is-invalid @enderror js-example-basic-single" name="cliente" required autocomplete="cliente" autofocus>
-                                <option value="cliente1">Cliente1</option>
-                                <option value="cliente2">zsd2</option>
+                                @foreach ($clients as $client)
+                                <option value="{{$client->id}}">{{$client->nombre_cliente}}</option>
+                                @endforeach
                                 </select>
                                 @error('cliente')
                                     <span class="invalid-feedback" role="alert">
@@ -57,12 +59,12 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="button" class="btn btn-primary" id="generar-reporte">
                                     Generar reporte
                                 </button>
                             </div>
                         </div>
-                    </form>
+                   
                 </div>
             </div>
         </div>
@@ -70,7 +72,17 @@
 </div>
 <script>
     $(document).ready(function() {
-    $('.js-example-basic-single').select2();
+   
+
+    $(document).on("click", "#generar-reporte", function() {
+
+        var cliente = $("#cliente").val();
+        var fechaInicio = $('#fecha_inicio').val();
+        var fechaFin = $('#fecha_fin').val();
+
+        window.location.href = "/reporte_pdf1/"+cliente+"?fecha_inicio="+fechaInicio+"&fecha_fin="+fechaFin;
+    });
+
 });
 </script>
 @endsection
