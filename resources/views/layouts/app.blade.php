@@ -45,6 +45,9 @@
                         <li class="nav-item">
                             <a class="nav-link negrita" href="{{ route('suppliers.index') }}">Proveedores</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link negrita" href="{{ route('clients.index') }}">Clientes</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
