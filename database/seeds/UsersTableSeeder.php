@@ -12,24 +12,33 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-       
-
-        $r1 = Role::create([
-            'name'      => 'Admin',
-            'slug'      => 'admin',
-            'special'   => 'all-access',
-        ]);
-        Role::create([
-            'name'      => 'Suspendido',
-            'slug'      => 'suspendido',
-            'special'   => 'no-access',
-        ]);
         User::create([
-            'name'=> 'Julio Paredes',
-            'email'=> 'julio.paredes@ues.edu.sv',
+            'name'=> 'Administrador',
+            'email'=> 'masterfumigaciones@gmail.com',
             'password'=> bcrypt('adminpa01*'),
         ]);
-        User::find(1)->roles()->save($r1);
-        factory(App\User::class, 2)->create();
+
+        User::create([
+            'name'=> 'Wilber Antonio Vigil',
+            'email'=> 'wilber145@gmail.com',
+            'password'=> bcrypt('wilber01*'),
+        ]);
+        User::create([
+            'name'=> 'Margarita Hernández',
+            'email'=> 'margaherna@hotmail.com',
+            'password'=> bcrypt('margarita01*'),
+        ]);
+        User::create([
+            'name'=> 'Pedro Cruz',
+            'email'=> 'pedro80@gmail.com',
+            'password'=> bcrypt('pedro01*'),
+        ]);
+        User::create([
+            'name'=> 'Luis Hernández',
+            'email'=> 'luishernandez0407@gmail.com',
+            'password'=> bcrypt('luis01*'),
+        ]);
+       
+        
     }
 }

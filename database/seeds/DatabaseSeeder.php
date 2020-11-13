@@ -24,23 +24,28 @@ class DatabaseSeeder extends Seeder
         DB::table('clients')->truncate();
         DB::table('employees')->truncate();
         DB::table('product_types')->truncate();
-        DB::table('users')->truncate();
-        DB::table('roles')->truncate();
-        DB::table('role_user')->truncate();
-        DB::table('permissions')->truncate();
-        DB::table('permission_user')->truncate();
-        DB::table('permission_role')->truncate();
+        //DB::table('users')->truncate();
+        //DB::table('roles')->truncate();
+        //DB::table('role_user')->truncate();
+        //DB::table('permissions')->truncate();
+        //DB::table('permission_user')->truncate();
+       // DB::table('permission_role')->truncate();
 
-        //Activar llaves foraneas
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-
+      
         //Llamar seeders
-        $this->call(PermissionsTableSeeder::class);
+       
         $this->call(UsersTableSeeder::class);
         $this->call(ClientsSeeder::class);
         $this->call(EstablishmentSeeder::class);
         $this->call(FumigationSeeder::class);
         $this->call(ProductTypeSeeder::class);
+         $this->call(RoleTableSeeder::class);
+        $this->call(RoleUserTableSeeder::class);
+        $this->call(PermissionsTableSeeder::class);
+
+
+          //Activar llaves foraneas
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
     }
 }

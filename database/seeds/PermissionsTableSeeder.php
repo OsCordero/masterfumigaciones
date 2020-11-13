@@ -70,5 +70,36 @@ class PermissionsTableSeeder extends Seeder
             'description'   => 'crear los roles del sistema',
         ]);
 
+        Permission::create([
+            'name'          => 'Modulo de citas',
+            'slug'          => 'citas',
+            'description'   => 'Modulo de citas en el sistema',
+        ]);
+
+        Permission::create([
+            'name'          => 'Modulo de clientes',
+            'slug'          => 'clientes',
+            'description'   => 'Modulo de clientes en el sistema',
+        ]);
+
+        Permission::create([
+            'name'          => 'Modulo de proveedores',
+            'slug'          => 'proveedores',
+            'description'   => 'Modulo de proveedores en el sistema',
+        ]);
+
+        Permission::create([
+            'name'          => 'Reporte estrategico',
+            'slug'          => 'reporteEstrategico',
+            'description'   => 'Permiso para el reporte estrategico',
+        ]);
+
+        Permission::create([
+            'name'          => 'Reporte tactico',
+            'slug'          => 'reporteTactico',
+            'description'   => 'Permiso para el reporte tactico',
+        ]);
+
+
     }
 }
