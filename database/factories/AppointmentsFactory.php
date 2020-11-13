@@ -8,7 +8,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Appointment::class, function (Faker $faker) {
     return [
-        "codigo_fumigacion" => "abc".strval(rand(100,500)),
+        "codigo_fumigacion" => "F2020".strval(rand(100,500)),
         "fecha" => $faker->date(),
         "hora" => $faker->time(),
         "cancelado" => rand(0,1),

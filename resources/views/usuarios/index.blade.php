@@ -1,12 +1,16 @@
 @extends('layouts.app')
 @section('content')
 
-<br>
+
 <br>
     <div class="container">
-        <h2>Lista de usuarios <a href="users/create"><button type="button" class="btn btn-success float-right">Agregar
-                    un nuevo usuario</button></a></h2>
+        <h2><center>Lista de usuarios </center><a href="users/create"></h2>
+       
+        <br>
+        <button type="button" class="btn btn-success float-right">Agregar un nuevo usuario</button></a>
                     <br>
+                    <br>
+
         <div class="row justify-content-center">
 
             <table class="table">
