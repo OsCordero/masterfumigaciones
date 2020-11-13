@@ -37,23 +37,32 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                      @can('usuarios', Auth::user())
+                      @can('users.index')
                       <li class="nav-item">
                         <a class="nav-link negrita" href="{{ route('users.index') }}">&nbspUsuarios</a>
                     </li>
                       @endcan
-                        <li class="nav-item">
-                            <a class="nav-link negrita" href="{{ route('suppliers.index') }}">&nbspProveedores</a>
-                        </li>
 
+                        @can('citas')
                         <li class="nav-item">
                             <a class="nav-link negrita" href="{{ url('/appoinments') }}">&nbspCitas</a>
                         </li>
+                        @endcan
 
+                        @can('clientes')
                         <li class="nav-item">
                             <a class="nav-link negrita" href="{{ route('clients.index') }}">&nbspClientes</a>
                         </li>
+                        @endcan
 
+                        @can('proveedores')
+                        <li class="nav-item">
+                            <a class="nav-link negrita" href="{{ route('suppliers.index') }}">&nbspProveedores</a>
+                        </li>
+                        @endcan
+
+                                               
+                        @can('reporteTactico', 'reporteEstrategico')
                         <li class="nav-item dropdown">
                         <a id="navbarDropdown1" class="nav-link dropdown-toggle negrita nav-link color" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         &nbspReportes <span class="caret"></span>
@@ -61,17 +70,21 @@
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown1">
 
-                                
-                                <a class="dropdown-item cerrar-sesion-color" href="/reporte/pacientes/afluencia">
+                                @can('reporteTactico')
+                                <a class="dropdown-item cerrar-sesion-color" href="/reportes1">
                                     Fumigaciones realizadas a un cliente
                                 </a>
+                                @endcan
                               
-                                <a class="dropdown-item cerrar-sesion-color" href="/reporte/pacientes/ubicacion">
+
+                                @can('reporteEstrategico')
+                                <a class="dropdown-item cerrar-sesion-color" href="/reportes2">
                                     Fumigaciones canceladas
                                 </a>
+                                @endcan
                                
-
                         </li>
+                        @endcan
 
 
                         

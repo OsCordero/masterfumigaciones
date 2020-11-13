@@ -22,42 +22,46 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-//Routes for suppliers resource
-Route::get('/suppliers', 'SupplierController@index')->name('suppliers.index');
-Route::post('/suppliers', 'SupplierController@filterSuppliers')->name('suppliers.filter');
-Route::get('/suppliers/create','SupplierController@create')->name('suppliers.create');
-Route::post('/suppliers/create', 'SupplierController@store')->name('suppliers.store');
-Route::get('/suppliers/{supplier}','SupplierController@show')->name('suppliers.show');
-Route::get('/suppliers/{supplier}/edit', 'SupplierController@edit')->name('suppliers.edit');
-Route::put('/suppliers/{supplier}', 'SupplierController@update')->name('suppliers.update');
-Route::delete('/suppliers/{supplier}', 'SupplierController@destroy')->name('suppliers.destroy');
+
 //Routes
 
 Route::middleware(['auth'])->group(function(){
 
-    Route::get('/users', 'UserController@index')->name('users.index')->middleware('can:user.show');
-    Route::resource('users', 'UserController')->middleware('can:user.show');
+    Route::get('/users', 'UserController@index')->name('users.index')->middleware('can:users.show');
+    Route::resource('users', 'UserController')->middleware('can:users.show');
 
-    Route::get('/appoinments', 'AppointmentController@index')->name('appoimenents.index');
-    Route::resource('appoinments', 'AppointmentController');
-    Route::get('/citas/fetch_establecimientos/', 'AppointmentController@fetchEstablecimientos');
-    Route::get('/citas/fetch_establecimientos_precio/', 'AppointmentController@fetchEstablecimientos_precio');
+    //Citas
+    Route::get('/appoinments', 'AppointmentController@index')->name('appoimenents.index')->middleware('can:citas');
+    Route::resource('appoinments', 'AppointmentController')->middleware('can:citas');
+    Route::get('/citas/fetch_establecimientos/', 'AppointmentController@fetchEstablecimientos')->middleware('can:citas');
+    Route::get('/citas/fetch_establecimientos_precio/', 'AppointmentController@fetchEstablecimientos_precio')->middleware('can:citas');
 
     //Ruta para asignar empleados
-    Route::get('/citas/empleados/{id}','AppointmentController@asignarEmpleado')->name('asignarEmpleado');
-    Route::get('/citas/monto/{id}','AppointmentController@asignarMonto')->name('appoinments.monto');
-    Route::get('/citas/guardarMonto/{id}', 'AppointmentController@guardarMonto')->name('appoinments.guardarMonto');
+    Route::get('/citas/empleados/{id}','AppointmentController@asignarEmpleado')->name('asignarEmpleado')->middleware('can:citas');
+    Route::get('/citas/monto/{id}','AppointmentController@asignarMonto')->name('appoinments.monto')->middleware('can:citas');
+    Route::get('/citas/guardarMonto/{id}', 'AppointmentController@guardarMonto')->name('appoinments.guardarMonto')->middleware('can:citas');
 
     //Rutas para los reportes
-    Route::get('/reportes1', 'AppointmentController@reporte1_captura')->name('reporte1.captura');
-    Route::get('/reporte_pdf1/{id}', 'AppointmentController@pdf1')->name('reporte1');
-    Route::get('/reporte_pdf2', 'AppointmentController@pdf2')->name('reporte2');
+    Route::get('/reportes1', 'AppointmentController@reporte1_captura')->name('reporte1.captura')->middleware('can:reporteTactico');
+    Route::get('/reporte_pdf1/{id}', 'AppointmentController@pdf1')->name('reporte1')->middleware('can:reporteTactico');
+    Route::get('/reporte_pdf2', 'AppointmentController@pdf2')->name('reporte2')->middleware('can:reporteEstrategico');
 
-    Route::get('/reportes2', 'AppointmentController@reporte2_captura')->name('reporte2.captura');
+    Route::get('/reportes2', 'AppointmentController@reporte2_captura')->name('reporte2.captura')->middleware('can:reporteEstrategico');
 
     // Rutas para Clientes
-    Route::get('/clients', 'ClientController@index')->name('clients.index')->middleware('can:client.show');
-    Route::resource('clients', 'ClientController');
+    Route::get('/clients', 'ClientController@index')->name('clients.index')->middleware('can:client.show')->middleware('can:clientes');
+    Route::resource('clients', 'ClientController')->middleware('can:clientes');
+
+    //Routes for suppliers resource
+    Route::get('/suppliers', 'SupplierController@index')->name('suppliers.index')->middleware('can:proveedores');
+    Route::post('/suppliers', 'SupplierController@filterSuppliers')->name('suppliers.filter')->middleware('can:proveedores');
+    Route::get('/suppliers/create','SupplierController@create')->name('suppliers.create')->middleware('can:proveedores');
+    Route::post('/suppliers/create', 'SupplierController@store')->name('suppliers.store')->middleware('can:proveedores');
+    Route::get('/suppliers/{supplier}','SupplierController@show')->name('suppliers.show')->middleware('can:proveedores');
+    Route::get('/suppliers/{supplier}/edit', 'SupplierController@edit')->name('suppliers.edit')->middleware('can:proveedores');
+    Route::put('/suppliers/{supplier}', 'SupplierController@update')->name('suppliers.update')->middleware('can:proveedores');
+    Route::delete('/suppliers/{supplier}', 'SupplierController@destroy')->name('suppliers.destroy')->middleware('can:proveedores');
+
 });
 
 Auth::routes();
