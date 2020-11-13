@@ -12,8 +12,8 @@
                     <p><strong>Nombre: </strong> {{$client->nombre_cliente}}</p>
                     <p><strong>Dui: </strong> {{$client->dui}}</p>
                    <p><strong>Correo electrónico: </strong> {{$client->correo_cliente}}</p>
-                   <p><strong>telefono: </strong> {{$client->telefono_cliente}}</p>
-                   <p><strong>celular: </strong> {{$client->celular_cliente}}</p>
+                   <p><strong>Teléfono: </strong> {{$client->telefono_cliente}}</p>
+                   <p><strong>Celular: </strong> {{$client->celular_cliente}}</p>
                    <div class="row justify-content-center">
                     <h3>Establecimientos del cliente</h3>
                     <table class="table">
