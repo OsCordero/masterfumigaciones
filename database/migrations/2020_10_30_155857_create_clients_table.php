@@ -20,7 +20,8 @@ class CreateClientsTable extends Migration
             $table->string('telefono_cliente', 9);
             $table->string('celular_cliente', 9);
             $table->string('correo_cliente', 30);
-            $table->string('comentarios', 100);
+            $table->string('comentarios', 100)->nullable();;
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }

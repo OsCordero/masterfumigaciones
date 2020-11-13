@@ -14,7 +14,8 @@ class ClientController extends Controller
      */
     public function index()
     {
-        //
+        $clients=Client::where("status","=",1)->paginate();
+        return view('clientes.index', compact('clients'));
     }
 
     /**
@@ -24,7 +25,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        //
+        return view('clientes.create');
     }
 
     /**
@@ -35,7 +36,8 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Client::create($request->all());
+        return redirect('clients');
     }
 
     /**
@@ -46,7 +48,7 @@ class ClientController extends Controller
      */
     public function show(Client $client)
     {
-        //
+        return view('clientes.show',compact('client'));
     }
 
     /**
@@ -56,8 +58,9 @@ class ClientController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Client $client)
-    {
-        //
+    {       
+      
+        return view('clientes.edit', compact('client'));
     }
 
     /**
@@ -69,7 +72,9 @@ class ClientController extends Controller
      */
     public function update(Request $request, Client $client)
     {
-        //
+             
+        $client->update($request->all());        
+        return redirect('clients');
     }
 
     /**
@@ -80,6 +85,14 @@ class ClientController extends Controller
      */
     public function destroy(Client $client)
     {
-        //
+    if($client->status==false)
+        $client->status=true;
+    else{
+      $client->status=false;       
     }
+    $client->save();
+    return redirect('clients');
+
+    }
+
 }

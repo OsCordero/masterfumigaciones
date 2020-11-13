@@ -50,6 +50,10 @@
                             <a class="nav-link negrita" href="{{ url('/appoinments') }}">&nbspCitas</a>
                         </li>
 
+                        <li class="nav-item">
+                            <a class="nav-link negrita" href="{{ route('clients.index') }}">&nbspClientes</a>
+                        </li>
+
                         <li class="nav-item dropdown">
                         <a id="navbarDropdown1" class="nav-link dropdown-toggle negrita nav-link color" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         &nbspReportes <span class="caret"></span>
@@ -70,8 +74,7 @@
                         </li>
 
 
-
-
+                        
                     </ul>
 
                     <!-- Right Side Of Navbar -->

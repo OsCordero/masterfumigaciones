@@ -54,6 +54,10 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/reporte_pdf2', 'AppointmentController@pdf2')->name('reporte2');
 
     Route::get('/reportes2', 'AppointmentController@reporte2_captura')->name('reporte2.captura');
+
+    // Rutas para Clientes
+    Route::get('/clients', 'ClientController@index')->name('clients.index')->middleware('can:client.show');
+    Route::resource('clients', 'ClientController');
 });
 
 Auth::routes();
