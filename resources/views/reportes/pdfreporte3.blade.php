@@ -37,10 +37,12 @@
           text-align: left;
           margin-bottom: 10px;
           position: absolute;
+         
         }
         
         #logo img {
           width: 150px;
+        
         }
         
         h1 {
@@ -163,12 +165,10 @@
     
     
   </head>
-
   <body>
-  </br>
     <header class="clearfix">
-    <h1>
     </br>
+    <h1>
       <div id="logo">
       <img src="/img/logo.jpg">
       
@@ -177,9 +177,10 @@
       <br>
      
     </header>
+    <main>
     </br>
-      <h1>
-     <b>Fumigaciones realizadas en un período de tiempo.</b> 
+    <h1>
+     <b>Cita Fumigación.</b> 
       <br>
         </br>
         <br>
@@ -187,54 +188,72 @@
       <h2 ><b>Fecha: </b>{{$fecha}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;       <b>Generado por: </b>{{$user}}</h2>
        </br>
        </br>
-       </br>
-       </br>
-       <h2><b>Cliente: </b> {{$client->nombre_cliente}}</h2> 
-       <h2 ><b>Fecha inicio: </b>{!! \Carbon\Carbon::parse($fechaInicio)->format('d-m-Y') !!} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;       <b>Fecha fin: </b>{!! \Carbon\Carbon::parse($fechaFin)->format('d-m-Y') !!} </h2>
       
-       </br>
-</br>
-           
-           
-          
-            
-         
-        
-        
-
-    </header>
-    <main>
-      <table>
+       <table>
         <thead>
-          <tr>
-            <th class="service" width="35%">Tipo establecimiento</th>
-            <th class="desc" widht="30%">Fecha</th>
-            <th  widht="30%">Tipo de fumigación</th>
-            
-          </tr>
+         
         </thead>
         <tbody>
-        @if($client->establishments)
-                    @foreach ($client->establishments as $establishment)
-                   @if($establishment->appointments)
-                   @foreach($establishment->appointments as $appointment)
-                   @if($appointment->cancelado==false)
+      
           <tr>
-            <td class="service"> {{$appointment->establishment->establishment_type->nombre_tipo_establecimiento}}</td>
-            <td class="desc">{!! \Carbon\Carbon::parse($appointment->fecha)->format('d-m-Y') !!}</td>
-            <td class="qty">{{$appointment->fumigation_type->nombre_tipo_fumigacion}}</td>
+            <td class="service">Código de fumigación:</td>
+            <td class="desc">{{$appointment->codigo_fumigacion}}</td>
+            
             
           </tr>
-          @endif
-                        @endforeach
-                        @endif
-                        @endforeach
-                        @endif
+          <tr>
+
+          <td class="service">Cliente:</td>
+            <td class="desc">{{$appointment->establishment->client->nombre_cliente}}</td>
+           
+
+          </tr>
+          <tr>
+            <td class="service">Lugar:</td>
+            <td class="desc">{{$appointment->establishment->nombre_establecimiento}}</td>
+        </tr>
+        <tr>
+            <td class="service">Tipo de fumigación:</td>
+            <td class="desc">{{$appointment->fumigation_type->nombre_tipo_fumigacion}}</td>
+        </tr>
+        <tr>
+            <td class="service">Fecha:</td>
+            <td class="desc">{!! \Carbon\Carbon::parse($appointment->fecha)->format('d-m-Y') !!}</td>
+        </tr>
+        <tr>
+            <td class="service">Hora:</td>
+            <td class="desc">{{$appointment->hora}}</td>
+        </tr>
+        <tr>
+            <td class="service">Precio estandar:</td>
+            <td class="desc">$ {{$appointment->establishment->establishment_type->costo_aproximado}}</td>
+        </tr>
+        <tr>
+            <td class="service">Fumigadores asignados:</td>
+            <td class="desc">@if(sizeof($appointment->employees) > 0)
+                        <ul>
+                                @foreach($appointment->employees as $employee)
+                                <li type="circle">{{$employee->nombre_empleado}}</li>
+                                @endforeach
+                        </ul>
+                            @else
+                            <label for="hora" class="col-md-4 col-form-label text-md-left">No tiene trabajadores asignados</label>
+                        @endif</td>
+        </tr>
+         
 
         </tbody>
       </table>
 
- 
+
+
+
+
+
+      
+</br>
+</br>
+   
     </main>
   </body>
 </html>

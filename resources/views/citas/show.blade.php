@@ -20,7 +20,7 @@
                             <label for="cliente" class="col-md-4 col-form-label text-md-left"><strong>Código de fumigación:</strong> </label>
                             <div class="col-md-6">
                             <label for="cliente" id='codigo'  class="col-md-8 col-form-label text-md-center">{{$appointment->codigo_fumigacion}}</label>
-                            
+                            <input id="id" type="text" class="form-control @error('fecha') is-invalid @enderror" name="id" value='{{$appointment->id}}' hidden>
                             </div>
                             </div>
 
@@ -88,7 +88,7 @@
 
                                   <div class="card-body">
                                   <div class="guardar-boton">
-                                    <button type="submit" class="btn btn-success">Imprimir</button>
+                                    <button type="button" class="btn btn-success" id="generar-reporte">Imprimir</button>
                                     </div>
                                     <div class="limpiarCancelar-boton">
                                   
@@ -103,4 +103,19 @@
             
         </div>
     </div>
+    <script>
+    $(document).ready(function() {
+   
+
+    $(document).on("click", "#generar-reporte", function() {
+
+        //var cliente = $("#cliente").val();
+        var id = $('#id').val();
+   
+
+        window.location.href = "/reporte_pdf3/?id="+id;
+    });
+
+});
+</script>
 @endsection

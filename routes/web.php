@@ -45,7 +45,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/reportes1', 'AppointmentController@reporte1_captura')->name('reporte1.captura')->middleware('can:reporteTactico');
     Route::get('/reporte_pdf1/{id}', 'AppointmentController@pdf1')->name('reporte1')->middleware('can:reporteTactico');
     Route::get('/reporte_pdf2', 'AppointmentController@pdf2')->name('reporte2')->middleware('can:reporteEstrategico');
-
+    Route::get('/reporte_pdf3', 'AppointmentController@pdf3')->name('reporte3');
     Route::get('/reportes2', 'AppointmentController@reporte2_captura')->name('reporte2.captura')->middleware('can:reporteEstrategico');
 
     // Rutas para Clientes

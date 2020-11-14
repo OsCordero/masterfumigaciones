@@ -193,9 +193,11 @@ class AppointmentController extends Controller
         $fechaInicio = $request['fecha_inicio'];
         $fechaFin = $request['fecha_fin'];
         $client=Client::find($id_cliente);
-        
-        $pdf = PDF::loadView('reportes/pdfreporte1', compact('client', 'fechaInicio','fechaFin'));
-        return $pdf->download('reporte_tactico.pdf');
+        $user = auth()->user()->name;
+        $fecha = Date('d-m-Y');
+        //$pdf = PDF::loadView('reportes/pdfreporte1', compact('client', 'fechaInicio','fechaFin','user','fecha'));
+        //return $pdf->download('reporte_tactico.pdf');
+        return view('reportes.pdfreporte1', compact('client', 'fechaInicio','fechaFin','user','fecha'));
     }
 
     public function pdf2(Request $request)
@@ -203,12 +205,21 @@ class AppointmentController extends Controller
         $fechaInicio = $request['fecha_inicio'];
         $fechaFin = $request['fecha_fin'];
         $clients=Client::all();
-        
-        $pdf = PDF::loadView('reportes/pdfreporte2', compact('clients', 'fechaInicio','fechaFin'));
-        return $pdf->download('reporte_estrategico.pdf');
+        $user = auth()->user()->name;
+        $fecha = Date('d-m-Y');
+        //$pdf = PDF::loadView('reportes/pdfreporte2', compact('clients', 'fechaInicio','fechaFin','user','fecha'));
+        //return $pdf->download('reporte_estrategico.pdf');
 
-        //return view('reportes.pdfreporte2', compact('clients', 'fechaInicio','fechaFin'));
+        return view('reportes.pdfreporte2', compact('clients', 'fechaInicio','fechaFin','user','fecha'));
     }
 
+    public function pdf3(Request $request)
+    {
+        
+        $appointment = Appointment::find( (int)$request['id']);
+        $user = auth()->user()->name;
+        $fecha = Date('d-m-Y');
+        return view('reportes.pdfreporte3',compact('appointment','user','fecha'));
+    }
 
 }
